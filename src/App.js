@@ -18,7 +18,6 @@ export default function App() {
       </label>
       <br />
       <br />
-
       <label>
         Bottom text{' '}
         <input
@@ -38,7 +37,6 @@ export default function App() {
       </label>
       <br />
       <br />
-
       <img src={templates} alt="Alt text" data-test-id="meme-image" />
     </div>
   );
