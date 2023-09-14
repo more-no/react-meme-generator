@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles.image.css';
 
 export default function App() {
   const [userTopText, setUserTopText] = useState();
@@ -37,7 +38,11 @@ export default function App() {
       </label>
       <br />
       <br />
-      <img src={templates} alt="Alt text" data-test-id="meme-image" />
+      <article className="container">
+        <img src={templates} alt={userTemplate} data-test-id="meme-image" />
+        <div className="textTop">{userTopText}</div>
+        <div className="textBottom">{userBottomText}</div>
+      </article>
     </div>
   );
 }
