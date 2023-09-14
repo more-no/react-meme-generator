@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function App() {
-  //  const [imageData, setImageData] = useState([]);
-
   const [userTopText, setUserTopText] = useState();
   const [userBottomText, setUserBottomText] = useState();
   const [userTemplate, setUserTemplate] = useState(
@@ -18,26 +16,6 @@ export default function App() {
   //   "source":"http://knowyourmeme.com/memes/its-an-older-meme-but-it-checks-out","keywords":[],
   //   "_self":"https://api.memegen.link/templates/older"}
   // }
-
-  // no need to fetch
-  // ma the json file is what parse the request ??
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch(url);
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       const data = await response.json();
-  //       setImageData(data);
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   return (
     <div>
@@ -72,15 +50,6 @@ export default function App() {
       <br />
 
       <img src={`${userTemplate}`} alt="Alt text" data-test-id="meme-image" />
-
-      {/* <ul>
-        {imageData.map((item) => (
-          <li key={item.id}>
-            <p>TEMPLATE: {item.template}</p>
-            <p>URL: {item.url}</p>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 }
