@@ -1,29 +1,33 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// const url = 'https://api.memegen.link/images';
+const url = 'https://api.memegen.link/images';
 
 export default function App() {
   const [imageData, setImageData] = useState([]);
 
-  const useEffect =
-    (() => {
-      fetch('https://api.memegen.link/images')
-        .then((response) => response.json())
-        .then((data) => {
-          setImageData(data);
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-        });
-    },
-    []);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setImageData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData(); // Call the fetchData function inside useEffect
+  }, []); // The empty dependency array ensures this effect runs only once on mount
 
   return (
     <div>
       <h1>Image Data</h1>
       <ul>
-        {imageData.map((index) => (
-          <li key={index}>
+        {imageData.map((item) => (
+          <li key={item.id}>
             {/* Render the properties of each object in the array */}
             <p>TEMPLATE: {item.template}</p>
             <p>URL: {item.url}</p>
