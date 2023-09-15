@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { saveAs } from 'file-saver';
 import './styles.image.css';
 
 export default function App() {
@@ -7,6 +8,10 @@ export default function App() {
   const [userTemplate, setUserTemplate] = useState('older');
 
   const templates = 'https://api.memegen.link/images/' + `${userTemplate}.png`;
+
+  const handleDownload = () => {
+    saveAs(templates, `${userTemplate}.png`);
+  };
 
   return (
     <div>
@@ -43,6 +48,8 @@ export default function App() {
         <div className="textTop">{userTopText}</div>
         <div className="textBottom">{userBottomText}</div>
       </article>
+      <br />
+      <button onClick={handleDownload}>Download</button>
     </div>
   );
 }
