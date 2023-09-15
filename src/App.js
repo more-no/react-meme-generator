@@ -5,51 +5,72 @@ import './styles.image.css';
 export default function App() {
   const [userTopText, setUserTopText] = useState();
   const [userBottomText, setUserBottomText] = useState();
-  const [userTemplate, setUserTemplate] = useState('older');
+  const [userTemplate, setUserTemplate] = useState('doge');
+  const initial = 'https://api.memegen.link/images/' + `${userTemplate}.png`;
+  let templates = initial;
 
-  const templates = 'https://api.memegen.link/images/' + `${userTemplate}.png`;
+  if (userTopText != undefined || userBottomText != undefined) {
+    templates =
+      'https://api.memegen.link/images/' +
+      `${userTemplate}/` +
+      `${userTopText}/` +
+      `${userBottomText}/` +
+      '.png';
+  } else {
+    templates = initial;
+  }
 
-  const handleDownload = () => {
+  const downloadImage = () => {
     saveAs(templates, `${userTemplate}.png`);
   };
 
   return (
-    <div>
-      <label>
-        Top text{' '}
-        <input
-          value={userTopText}
-          onChange={(top) => setUserTopText(top.target.value)}
-        />
-      </label>
-      <br />
-      <br />
-      <label>
-        Bottom text{' '}
-        <input
-          value={userBottomText}
-          onChange={(bottom) => setUserBottomText(bottom.target.value)}
-        />
-      </label>
-      <br />
-      <br />
+    <div className="wrapper">
+      <div className="sidebar">
+        <br />
+        <br />
+        <label className="label1">
+          Top text <br />
+          <input
+            value={userTopText}
+            onChange={(top) => setUserTopText(top.target.value)}
+          />
+        </label>
 
-      <label>
-        Meme template{' '}
-        <input
-          value={userTemplate}
-          onChange={(bottom) => setUserTemplate(bottom.target.value)}
-        />
-      </label>
-      <br />
-      <br />
-      <article className="container">
+        <br />
+        <br />
+        <label className="label2">
+          Bottom text <br />
+          <input
+            value={userBottomText}
+            onChange={(bottom) => setUserBottomText(bottom.target.value)}
+          />
+        </label>
+
+        <br />
+        <br />
+        <label className="label3">
+          Meme template <br />
+          <input
+            value={userTemplate}
+            onChange={(bottom) => setUserTemplate(bottom.target.value)}
+          />
+        </label>
+
+        <br />
+        <br />
+        <button className="button" onClick={downloadImage}>
+          Download
+        </button>
+      </div>
+
+      <div className="content">
+        <br />
+        <br />
         <img src={templates} alt={userTemplate} data-test-id="meme-image" />
-        <div className="textTop">{userTopText}</div>
-        <div className="textBottom">{userBottomText}</div>
-      </article>
-      <br />
-      <button onClick={handleDownload}>Download</button>
+        <br />
+        <br />
+      </div>
     </div>
   );
 }

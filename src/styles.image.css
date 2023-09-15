@@ -1,0 +1,37 @@
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+  position: relative;
+  place-self: left;
+}
+
+.wrapper {
+  background-color: rgb(123, 129, 129);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: 'sidebar content';
+}
+
+.label1 {
+  grid-area: sidebar;
+  justify-self: center;
+}
+
+.label2 {
+  grid-area: sidebar;
+  justify-self: center;
+}
+
+.label3 {
+  grid-area: sidebar;
+  justify-self: center;
+}
+
+.button {
+  grid-area: sidebar;
+  justify-self: center;
+}
