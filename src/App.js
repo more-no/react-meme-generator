@@ -3,26 +3,24 @@ import { saveAs } from 'file-saver';
 import './styles.image.css';
 
 export default function App() {
-  const [userTopText, setUserTopText] = useState();
-  const [userBottomText, setUserBottomText] = useState();
-  const [userTemplate, setUserTemplate] = useState('doge');
-  const initial = 'https://api.memegen.link/images/' + `${userTemplate}.png`;
+  const [userTemplate, setUserTemplate] = useState('nice');
+  const [userTopText, setUserTopText] = useState('');
+  const [userBottomText, setUserBottomText] = useState('');
+  const initial = `https://api.memegen.link/images/${userTemplate}.png`;
   let templates = initial;
 
-  if (userTopText != undefined || userBottomText != undefined) {
+  if (userTopText || userBottomText) {
     templates =
       'https://api.memegen.link/images/' +
       `${userTemplate}/` +
       `${userTopText}/` +
-      `${userBottomText}/` +
+      userBottomText +
       '.png';
-  } else {
-    templates = initial;
   }
 
-  const downloadImage = () => {
+  function downloadImage() {
     saveAs(templates, `${userTemplate}.png`);
-  };
+  }
 
   return (
     <div className="wrapper">
